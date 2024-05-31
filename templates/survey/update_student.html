@@ -1,0 +1,90 @@
+{% extends 'survey/base.html' %}
+
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="{% static 'css/inscription.css' %}">
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Inscription </title>
+</head>
+<div class="container">
+        <header>Inscription</header>
+
+        <form method="POST" autocomplete="off" enctype="multipart/form-data">
+          {% csrf_token %}
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Information de l'etudiant</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Username</label>
+                            {% render_field userForm.username|attr:'required:true'  class="form-control" placeholder="Enter your name" %}
+                        </div>
+
+                        <div class="input-field">
+                            <label>Firstname</label>
+                            {% render_field userForm.first_name|attr:'required:true'  class="form-control" placeholder="Enter your first name" %}
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>Lastname</label>
+                            {% render_field userForm.last_name|attr:'required:true'  class="form-control" placeholder="Enter your last name" %}
+                        </div>
+
+                        <div class="input-field">
+                            <label>Password</label>
+                            {% render_field userForm.password|attr:'required:true'  class="form-control" placeholder="Enter your password" %}
+                        </div>
+
+                        <!-- <div class="input-field">
+                            <label>Gender</label>
+                            <select required>
+                                <option disabled selected>Select gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Others</option>
+                            </select>
+                        </div> -->
+
+                        <!-- <div class="input-field">
+                            <label>Adresse</label>
+                            {% render_field studentForm.address|attr:'required:true'  class="form-control" placeholder="Enter your Adresse" %}
+                        </div> -->
+                        <div class="input-field">
+                            <label>Mobile</label>
+
+                            {% render_field studentForm.mobile|attr:'required:true'  class="form-control" placeholder="Enter your mobile" %}
+                        </div>
+                        <div class="input-field">
+                            <label>Picture</label>
+
+                            {% render_field studentForm.profile_pic|attr:'required:true'  class="form-control" placeholder="" %}
+                        </div>
+                    </div>
+                </div>
+
+
+
+                    <button class="nextBtn" type="submit">
+                        <span class="btnText">Next</span>
+                        <i class="uil uil-navigator"></i>
+                    </button>
+                </div>
+
+
+        </form>
+
+    </div>
+
+{% endblock content %}

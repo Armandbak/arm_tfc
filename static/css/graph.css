@@ -1,0 +1,36 @@
+.body{
+    background-color: #fff;
+    color: #191f26;
+    width: 100%;
+
+}
+.section-container{
+    padding: 30px;
+}
+.card-theme{
+    background-color:#f7fff7  ;
+    border: none;
+    border-radius: 2px;
+}
+.card-header-theme{
+    color: #0b0b0b;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    /*background-color: #2a94e0;*/
+}
+.card-body-theme{
+    background-color: #494F56;
+}
+.cards{
+    display: flex;
+    flex-direction:column;
+}
+
+.card-deck{
+    padding: 20px;
+}
+
+
+.card-theme{
+    padding: 10px;
+}

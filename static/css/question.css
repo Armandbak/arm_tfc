@@ -1,0 +1,42 @@
+.body{
+
+    color: #f7fff7;
+    width: 100%;
+
+}
+.section-container{
+    padding: 15px;
+}
+.card-theme{
+
+    height: 50%;
+    border: none;
+    border-radius: 8px;
+
+}
+.card-header-theme{
+
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+
+}
+
+.cards{
+    display: flex;
+    flex-direction:column;
+}
+
+.card-deck{
+    padding: 20px;
+}
+
+
+.card-theme{
+    padding: 10px;
+
+}
+
+.card-body{
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de sondage</title>
+    <style>
+        /* Ajoutez ici votre CSS si nécessaire */
+    </style>
+</head>
+<body>
+    <form method="post" id="dynamicForm">
+        {% csrf_token %}
+        <div id="questions-container">
+            {% for question in questions %}
+                <div class="question-field">
+                    <label>{{ question.text }}</label>
+                    <input type="hidden" name="form-{{ forloop.counter0 }}-question" value="{{ question.id }}">
+                    <input type="text" name="form-{{ forloop.counter0 }}-answer">
+                </div>
+            {% endfor %}
+        </div>
+        <input type="hidden" name="form-TOTAL_FORMS" value="{{ questions|length }}">
+        <input type="hidden" name="form-INITIAL_FORMS" value="0">
+        <input type="hidden" name="form-MIN_NUM_FORMS" value="0">
+        <input type="hidden" name="form-MAX_NUM_FORMS" value="1000">
+        <button type="button" id="addQuestionBtn">Ajouter une question</button>
+        <button type="submit">Soumettre</button>
+    </form>
+
+    <script>
+        let questionCount = {{ questions|length }};
+
+        document.getElementById('addQuestionBtn').addEventListener('click', function() {
+            questionCount++;
+            const container = document.getElementById('questions-container');
+            const newQuestionDiv = document.createElement('div');
+            newQuestionDiv.className = 'question-field';
+            newQuestionDiv.innerHTML = `
+                <label for="question${questionCount}">Question ${questionCount}:</label>
+                <input type="hidden" name="form-${questionCount-1}-question" value="">
+                <input type="text" name="form-${questionCount-1}-answer">
+            `;
+            container.appendChild(newQuestionDiv);
+            document.querySelector('input[name="form-TOTAL_FORMS"]').value = questionCount;
+        });
+    </script>
+</body>
+</html>

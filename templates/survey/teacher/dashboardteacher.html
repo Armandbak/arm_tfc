@@ -1,0 +1,40 @@
+{% extends 'survey/teacher/teacherbase.html' %}
+
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+</head>
+<div class="container">
+
+
+        <section class="main">
+          <div class="main-top">
+            <h1></h1>
+            <i class="fas fa-user-cog"></i>
+          </div>
+          <div class="main-skills">
+            <div class="card">
+              <i class="fas fa-user-graduate f-left"></i>
+              <p>Nombre Total d'etudiant </p>
+              <h3>{{total_student}}</h3>
+            </div>
+
+
+            <div class="card">
+              <i class="fas fa-book f-left"></i>
+              <p>Nombre Totale des cours</p>
+              <h3>{{total_course}}</h3>
+
+            </div>
+
+</div>
+
+
+        </section>
+      </div>
+{% endblock content %}

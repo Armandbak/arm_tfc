@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+        <title>{% block title %} Base Admin {% endblock%}</title>
+    </head>
+    <body id="body-pd">
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <div class="nav__brand">
+                        <ion-icon name="menu-sharp" class="nav__toggle" id="nav-toggle"></ion-icon>
+                        <a href="#" class="nav__logo">{{request.user.first_name}} <span>(Teacher)</span></a>
+                    </div>
+                    <div class="nav__list">
+                        <a href="/teacher/teacher-dashboard" class="nav__link {% if active_link == 'dashboard' %}active{% endif %}">
+                            <ion-icon name="home-sharp" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Dashboard</span>
+                        </a>
+
+
+
+
+                       <!-- <a href="/teacher/teacher-graph" class="nav__link {% if active_link == 'analytics' %}active{% endif %}">
+                            <ion-icon name="analytics-sharp" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Analytics</span>
+                        </a> -->
+
+                        <a href="{% url 'course_list' %}" class="nav__link {% if active_link == 'course' %}active{% endif %}">
+                            <ion-icon name="book-sharp" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Course</span>
+                        </a>
+
+                        <a href="{% url 'add_question' %}" class="nav__link {% if active_link == 'question' %}active{% endif %}">
+                            <ion-icon name="help-circle" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Question</span>
+                        </a>
+                        <a href="/messagerie/teacher/students/" class="nav__link {% if active_link == 'message' %}active{% endif %}">
+                            <ion-icon name="chatbox-ellipses" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Message</span>
+                        </a>
+                    </div>
+                </div>
+
+                <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
+                    {% csrf_token %}
+                </form>
+                <a href="#" class="nav__link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+
+        <section class="home-section">
+            <div class="text">
+                {% block content %}
+
+            {% endblock content %}
+            </div>
+            {% include "survey/footer.html" %}
+          </section>
+
+
+
+
+        <!-- ===== IONICONS ===== -->
+        <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+        <!-- ===== MAIN JS ===== -->
+        <script src="{% static 'js/sidebar.js' %}"></script>
+
+    </body>
+</html>

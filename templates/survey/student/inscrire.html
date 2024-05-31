@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription au Cours</title>
+</head>
+<body>
+    <h1>Inscription au Cours: {{ course.name }}</h1>
+    <p>Description: {{ course.description }}</p>
+    <p>Date de début: {{ course.date_debut }}</p>
+    <p>Date de fin: {{ course.date_fin }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">S'inscrire</button>
+    </form>
+</body>
+</html>

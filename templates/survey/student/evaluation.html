@@ -1,0 +1,105 @@
+{% extends 'survey/student/studentbase.html' %}
+
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/student_start.css' %}">
+    <style>
+        .title-div{
+            height: 100px;
+            width: 600px;
+        }
+        .btn1 {
+            padding: 10px 10px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            height: 36px;
+            width: 90px;
+            border-radius: 5px;
+            font-size: 14px;
+            letter-spacing: .5px;
+            font-weight: 540;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #d04d4d;
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: #4070f4;
+            color: white;
+        }
+
+        .button-container {
+
+            text-align: right;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+ <section class="form">
+        <div class="title-div">
+            <h1 style="text-align: center;">Question du cours : <strong style="color:#4070f4;">{{ course.name }}</strong></h1>
+            <p>Voici la liste des questions du cours {{ course.name }}</p>
+        </div>
+
+        {% if already_submitted %}
+            <p>Vous avez déjà passé cette évaluation.</p>
+        {% else %}
+            <form class="form" autocomplete="off" action="{% url 'calculate-marks' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="course_id" value="{{ course.id }}">
+                <div class="form-group">
+                    {% for question in questions %}
+                    <div class="name-div">
+                        <div class="form-check mx-4">
+                            <h3 class="text-info">{{ question.text }}</h3>
+                        </div>
+                        {% for option in question.get_options %}
+                        <div class="form-check mx-4">
+                            <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="{{ option }}" value="{{ option }}">
+                            <label class="form-check-label" for="{{ option }}">
+                                {{ option }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    <div>
+                        <input class="btn" type="submit" name="Submit">
+                    </div>
+                </div>
+            </form>
+        {% endif %}
+    </section>
+
+    <script>
+        function saveAns() {
+            var ele = document.getElementsByTagName('input');
+            for (var i = 0; i < ele.length; i++) {
+                if (ele[i].type == "radio") {
+                    if (ele[i].checked) {
+                        setCookie(ele[i].name, ele[i].value, 3);
+                    }
+                }
+            }
+        }
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock content %}

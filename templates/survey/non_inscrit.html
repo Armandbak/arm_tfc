@@ -1,0 +1,64 @@
+{% extends 'survey/base.html' %}
+{%load static%}
+{% block content %}
+
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/tableau2.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+<main class="table" id="customers_table">
+         <section class="table__header">
+            <h1>professeur non approuver</h1>
+            <div class="input-group">
+                <input type="search" placeholder="Search Data...">
+                <img src="{% static 'image/images/search.png' %}" alt="">
+            </div>
+            <!--<div class="export__file">
+                <label for="export-file" class="export__file-btn" title="Export File"></label>
+                <input type="checkbox" id="export-file">
+               <div class="export__file-options">
+                      <label>Export As &nbsp; &#10140;</label>
+                      <label for="export-file" id="toPDF">PDF <img src="{% static 'image/images/pdf.png' %}" alt=""></label>
+                      <label for="export-file" id="toJSON">JSON <img src="{% static 'image/images/json.png' %}" alt=""></label>
+                      <label for="export-file" id="toCSV">CSV <img src="{% static 'image/images/csv.png' %}" alt=""></label>
+                      <label for="export-file" id="toEXCEL">EXCEL <img src="{% static 'image/images/excel.png' %}" alt=""></label>
+                   </div>
+
+            </div> -->
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Name <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Mobile <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> specialite <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Approve  <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Delete <span class="icon-arrow">&UpArrow;</span></th>
+                        <!-- <th> Amount <span class="icon-arrow">&UpArrow;</span></th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in teachers %}
+                    <tr>
+                        <!-- <td> 1 </td> -->
+                        <td> <img src="{% static t.profile_pic.url %}" alt="">{{t.get_name}}</td>
+                        <td> {{t.mobile}}</td>
+                        <td> {{t.specialite}} </td>
+                        <td><a class="btn btn-primary btn-xs" href="{% url 'approve-teacher' t.id  %}"><span style="color:#1d6098" ><i class="fa fa-check-circle-o  fa-2x" aria-hidden="true"></i></span></a></td>
+                        <td><a class="btn btn-danger btn-xs" href="{% url 'reject-teacher' t.id  %}"><span style="color:#c52132;"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></span></a></td>
+      </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="{% static 'js/tableau2.js' %}"></script>
+
+
+{% endblock content %}
+

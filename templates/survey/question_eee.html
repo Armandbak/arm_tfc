@@ -1,0 +1,126 @@
+{% extends 'survey/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/add_question.css' %}">
+    <script>
+        function addOptionField() {
+            var container = document.getElementById('options-container');
+            var inputCount = container.getElementsByTagName('input').length + 1;
+            var div = document.createElement('div');
+            div.className = 'option-field';
+
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'options';
+            input.placeholder = 'Option ' + inputCount;
+            input.className = 'form-control';
+            input.oninput = updateResponseOptions;
+            div.appendChild(input);
+
+            var button = document.createElement('button');
+            button.type = 'button';
+            button.innerHTML = 'Supprimer';
+            button.className = 'btn btn-danger';
+            button.onclick = function() {
+                container.removeChild(div);
+                updatePlaceholders();
+                updateResponseOptions();
+            };
+            div.appendChild(button);
+
+            container.appendChild(div);
+            updateResponseOptions();
+        }
+
+        function updatePlaceholders() {
+            var container = document.getElementById('options-container');
+            var inputs = container.getElementsByTagName('input');
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].placeholder = 'Option ' + (i + 1);
+            }
+        }
+
+        function updateResponseOptions() {
+            var select = document.getElementById('id_response');
+            var container = document.getElementById('options-container');
+            var inputs = container.getElementsByTagName('input');
+            select.options.length = 0; // Clear existing options
+            var defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.text = '---';
+            select.appendChild(defaultOption);
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value.trim() !== '') {
+                    var option = document.createElement('option');
+                    option.value = inputs[i].value;
+                    option.text = inputs[i].value;
+                    select.appendChild(option);
+                }
+            }
+        }
+    </script>
+</head>
+
+<section class="form">
+    <div class="title-div">
+			<h1>Ajouter une question</h1>
+			<p>chaque question doit corespondre ou avoir que 4 choix </p>
+			<p class="required">* champ Requise</p>
+    </div>
+
+<form method="POST" autocomplete="off" >
+
+    {%csrf_token%}
+    <div class="form-group">
+
+        <div class="name-div">
+			<div class="name">Cours<span class="required">*</span></div>
+			<div class="input-div"> {{ form.course.label_tag }} {{ form.course }}</div>
+
+        </div>
+        <div class="name-div">
+                <div class="name">Nombres des points<span class="required">*</span></div>
+                <div class="input-div">{{form.marks}}
+            </div>
+        </div>
+        <div class="quest">
+                <div class="name">Question<span class="required">*</span></div>
+                <div class="input-div">{{ form.text.label_tag }} {{ form.text }}
+            </div>
+        </div>
+
+
+        <div class="quest">
+                <div id="options-container" class="form-group">
+                <div class="option-field">
+                    <input type="text" name="options" placeholder="Option 1" class="form-control" oninput="updateResponseOptions()">
+                    <button type="button" class="btn btn-danger" onclick="this.parentElement.remove(); updatePlaceholders(); updateResponseOptions();">Supprimer</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="name-div">
+                <button type="button" class="btn btn-secondary" onclick="addOptionField()">Ajouter une option</button>
+        </div>
+        <div class="name-div">
+                <div class="name">Reponse<span class="required">*</span></div>
+                <div class="input-div">{{ form.response.label_tag }} {{ form.response }}</div>
+        </div>
+
+
+        <div>
+			<input class="btn" type="submit" name="Submit">
+        </div>
+    </div>
+
+
+
+  </form>
+</section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock content %}

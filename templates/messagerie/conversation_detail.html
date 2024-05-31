@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conversation Detail</title>
+</head>
+<body>
+    <h1>Conversation Detail</h1>
+    <ul>
+        {% for message in messages %}
+            <li>{{ message.sender.username }}: {{ message.content }}</li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'send_message' conversation_id %}" method="post">
+        {% csrf_token %}
+        <textarea name="content"></textarea>
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>
