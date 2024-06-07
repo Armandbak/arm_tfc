@@ -13,6 +13,10 @@
         <title>{% block title %} Base Admin {% endblock%}</title>
     </head>
     <body id="body-pd">
+        <div class="top-navbar" id="top-navbar">
+            <ion-icon name="menu-sharp" onclick="toggleSidebar()" class="icon nav__toggle" id="nav-toggle_2"></ion-icon>
+
+        </div>
         <div class="l-navbar" id="navbar">
             <nav class="nav">
                 <div>
@@ -36,14 +40,14 @@
 
                         <a href="{% url 'course_list' %}" class="nav__link {% if active_link == 'course' %}active{% endif %}">
                             <ion-icon name="book-sharp" class="nav__icon"></ion-icon>
-                            <span class="nav__name">Course</span>
+                            <span class="nav__name">EC</span>
                         </a>
 
                         <a href="{% url 'add_question' %}" class="nav__link {% if active_link == 'question' %}active{% endif %}">
                             <ion-icon name="help-circle" class="nav__icon"></ion-icon>
                             <span class="nav__name">Question</span>
                         </a>
-                        <a href="/messagerie/teacher/students/" class="nav__link {% if active_link == 'message' %}active{% endif %}">
+                        <a href="{% url 'ec_list' %}" class="nav__link {% if active_link == 'message' %}active{% endif %}">
                             <ion-icon name="chatbox-ellipses" class="nav__icon"></ion-icon>
                             <span class="nav__name">Message</span>
                         </a>

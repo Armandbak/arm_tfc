@@ -35,24 +35,24 @@
 					</div>
 					<div class="card-body contacts_body">
 						<ui class="contacts">
-							{% for teacher in teachers %}
+
 
 								<li class="active">
-									<a href="{% url 'student_conversations' teacher_id=teacher.user.id %}">
+									<a href="{% url 'student_conversations' teacher_id=teachers.user.id %}">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="{% static teacher.profile_pic.url %}" class="rounded-circle user_img">
+												<img src="{% static teachers.profile_pic.url %}" class="rounded-circle user_img">
 												<!-- <span class="online_icon"></span> -->
 											</div>
 											<div class="user_info">
-												<span>{{ teacher.user.username }}</span>
+												<span>{{ teachers.user.username }}</span>
 
 											</div>
 										</div>
 									</a>
 
 								</li>
-							{% endfor %}
+
 
 						</ui>
 					</div>

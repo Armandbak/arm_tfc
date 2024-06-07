@@ -16,8 +16,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('teacher/students/', views.teacher_students, name='teacher_students'),
-    path('student/teachers/', views.student_teachers, name='student_teachers'),
+    path('teacher/students/<int:course_id>/', views.teacher_students, name='teacher_students'),
+    path('student/teachers/<int:course_id>/', views.student_teachers, name='student_teachers'),
     path('teacher/conversations/<int:student_id>/', views.teacher_conversations, name='teacher_conversations'),
     path('student/conversations/<int:teacher_id>/', views.student_conversations, name='student_conversations'),
 ]

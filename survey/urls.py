@@ -7,11 +7,15 @@ urlpatterns = [
     path('adminlogin', LoginView.as_view(template_name='survey/login.html'), name='adminlogin'),
     path('admin-dashboard', views.admin_dashboard_view, name='admin-dashboard'),
     path('add_course/', views.add_course_view, name='add_course'),
+    path('add_ue/', views.add_ue_view, name='add_ue'),
     path('course_success/', views.course_success_view, name='course_success'),
     path('add_question/', views.add_question_view, name='add_question'),
     path('question_success/', views.question_success_view, name='question_success'),
     path('courses/', views.course_list, name='course_list'),
     path('courses-teacher/', views.course_list_adm, name='course_list_teacher'),
+    path('ec_list/', views.ec_list, name='ec_list'),
+    path('ec_student_list/', views.ec_student_list, name='ec_student_list'),
+    path('ues/', views.ue_list, name='ue_list'),
     path('courses-list/', views.course_list_total, name='course_list_total'),
     path('courses/<int:course_id>/', views.course_detail, name='course_detail'),
     path('courses_student/<int:course_id>/', views.course_detail_student, name='course_detail_student'),
@@ -31,5 +35,7 @@ urlpatterns = [
     path('reject-teacher/<int:pk>', views.reject_teacher_view,name='reject-teacher'),
     path('update-teacher/<int:pk>', views.update_teacher_view,name='update-teacher'),
     path('delete-teacher/<int:pk>', views.delete_teacher_view,name='delete-teacher'),
+    path('ues/<int:ue_id>/edit/', views.edit_ue, name='edit_ue'),
+    path('ues/<int:ue_id>/delete/', views.delete_ue, name='delete_ue'),
 
 ]

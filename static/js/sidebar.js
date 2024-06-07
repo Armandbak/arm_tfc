@@ -14,6 +14,8 @@ const showMenu = (toggleId, navbarId, bodyId)=>{
 }
 showMenu('nav-toggle','navbar','body-pd')
 
+
+
 /*===== LINK ACTIVE  =====*/
 const linkColor = document.querySelectorAll('.nav__link')
 function colorLink(){
@@ -36,5 +38,33 @@ for(i=0;i<linkCollapse.length;i++){
     rotate.classList.toggle('rotate')
   })
 }
+
+
+function toggleSidebar() {
+    var sidebar = document.getElementById("navbar");
+    const content = document.querySelector('.home-section');
+    if (sidebar.style.display === "block") {
+        sidebar.style.display = "none";
+    } else {
+        sidebar.style.display = "block";
+        sidebar.classList.toggle('expander2');
+        content.classList.toggle('blur');
+
+    }
+}
+
+// Fonction pour fermer la sidebar si on clique en dehors
+function closeSidebar(event) {
+    var sidebar = document.getElementById("navbar");
+    const content = document.querySelector('.home-section');
+    if (sidebar.style.display === "block" && !sidebar.contains(event.target) && !event.target.matches('.icon')) {
+        sidebar.style.display = "none";
+        content.classList.toggle('blur');
+    }
+}
+
+// Ajouter un écouteur d'événements sur le document
+document.addEventListener('click', closeSidebar);
+
 
 

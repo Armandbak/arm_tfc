@@ -1,14 +1,21 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 #from .models import User, StudentProfile, TeacherProfile
-from .models import Question
+from .models import Question, Uenseignement
 
 from .models import Course
 
+
+class UenseignementForm(forms.ModelForm):
+    class Meta:
+        model = Uenseignement
+        fields = ['name']
+        widgets = {
+        }
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = ['name', 'description', 'date_debut', 'date_fin', 'total_marks']
+        fields = ['name', 'description', 'date_debut', 'date_fin', 'total_marks', 'uenseignement']
         widgets = {
             'date_fin': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
             'date_debut': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),

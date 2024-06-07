@@ -1,0 +1,1 @@
+web gunicorn tfc.wsgi:application --log-file -

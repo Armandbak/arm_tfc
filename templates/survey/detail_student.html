@@ -1,4 +1,4 @@
-{% extends 'survey/teacher/teacherbase.html' %}
+{% extends 'survey/student/studentbase.html' %}
 
 {% load widget_tweaks %}
 {% block content %}
@@ -46,11 +46,11 @@
 
 <section class="form">
     <div class="title-div">
-        <h1 style="text-align: center;"> Question du cours : <strong style="color:#4070f4;">{{course.name}}</strong></h1>
+        <h1 style="text-align: center;"> Question de l'Element constitutif : <strong style="color:#4070f4;">{{course.name}}</strong></h1>
 			<p>description: <strong style="color: #4f6393">{{course.description}}</strong></p>
             <p>date du debut : <strong style="color: #4f6393">{{course.date_debut}}</strong></p>
             <p>date de fin : <strong style="color: #4f6393">{{course.date_fin}}</strong></p>
-            <p>Voicis la liste des question du cour {{course.name}}</p>
+            <p>Voicis la liste des question de l'EC {{course.name}}</p>
 
     </div>
 

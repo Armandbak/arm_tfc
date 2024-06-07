@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from student.models import Student
 from teacher.models import Teacher
-from .forms import CourseForm
+from .forms import CourseForm, UenseignementForm
 #from .forms import UserForm, StudentProfileForm, TeacherProfileForm
 from teacher import models as TMODEL
 from student import models as SMODEL
@@ -14,7 +14,7 @@ from teacher import forms as TFORM
 from student import forms as SFORM
 from . import forms,models
 from survey import forms as QFORM
-from .models import Question, Course, Inscription, Result
+from .models import Question, Course, Inscription, Result, Uenseignement
 from django.shortcuts import render, redirect
 from .forms import QuestionForm
 from .models import Question
@@ -89,6 +89,19 @@ def add_course_view(request):
     else:
         form = CourseForm()
     return render(request, 'survey/add_course.html', {'form': form})
+
+@login_required(login_url='adminlogin')
+def add_ue_view(request):
+
+    if request.method == 'POST':
+        form = UenseignementForm(request.POST)
+        if form.is_valid():
+            ue = form.save(commit=False)
+            ue.save()
+            return redirect('ue_list')  # Redirigez vers une vue appropriée après l'ajout du cours
+    else:
+        form = CourseForm()
+    return render(request, 'survey/add_ue.html', {'form': form})
 @login_required
 def course_success_view(request):
     return render(request, 'survey/course_success.html')
@@ -140,10 +153,27 @@ def course_list(request):
     return render(request, 'survey/course_list.html', {'courses': courses, 'active_link': active_link})
 
 @login_required
-def course_list_adm(request):
+def ue_list(request):
+    ue = Uenseignement.objects.all()
+    active_link = 'course'
+    return render(request, 'survey/ue_list.html', {'ues': ue, 'active_link': active_link})
+
+
+
+def ec_list(request):
     courses = Course.objects.all()
     active_link = 'course'
-    return render(request, 'survey/course_list_adm.html', {'courses': courses, 'active_link': active_link})
+    return render(request, 'messagerie/ec_list.html', {'courses': courses, 'active_link': active_link})
+def ec_student_list(request):
+    courses = Course.objects.all()
+    active_link = 'course'
+    return render(request, 'messagerie/ec_student_list.html', {'courses': courses, 'active_link': active_link})
+
+@login_required
+def course_list_adm(request):
+    ue = Course.objects.all()
+    active_link = 'course'
+    return render(request, 'survey/course_list_adm.html', {'ue': ue, 'active_link': active_link})
 
 @login_required
 def course_list_total(request):
@@ -219,11 +249,30 @@ def edit_course(request, course_id):
         form = CourseForm(instance=course)
     return render(request, 'survey/teacher/edit_course.html', {'form': form})
 
+
+@login_required
+def edit_ue(request, ue_id):
+    ue = get_object_or_404(Uenseignement, id=ue_id)
+    if request.method == 'POST':
+        form = UenseignementForm(request.POST, instance=ue)
+        if form.is_valid():
+            form.save()
+            return redirect('ue_list')
+    else:
+        form = UenseignementForm(instance=ue)
+    return render(request, 'survey/update_ue.html', {'form': form})
+
 @login_required
 def delete_course(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     course.delete()
     return redirect('course_list')
+
+@login_required
+def delete_ue(request, ue_id):
+    ue = get_object_or_404(Uenseignement, id=ue_id)
+    ue.delete()
+    return redirect('ue_list')
 
 
 @login_required

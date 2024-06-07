@@ -45,6 +45,32 @@ a{
   text-decoration: none;
 }
 
+.top-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /*background-color: var(--bg-color);*/
+  color: var(--white-color);
+  padding: 1rem;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  z-index: var(--z-fixed);
+}
+.top-navbar .nav__toggle {
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+.top-navbar .nav__logo {
+  font-weight: 600;
+}
+.icon{
+  color: black;
+}
+
+/*===== Top Navbar =====*/
+
 /*===== l NAV =====*/
 .l-navbar{
   position: fixed;
@@ -111,9 +137,18 @@ a{
   width: calc(var(--nav-width) + 9.25rem);
 }
 
+.expander2{
+  width: calc(var(--nav-width) + 9.25rem);
+  transition: transform 0.5s ease, opacity 0.5s ease; /* Add transition */
+}
+
 /*Add padding body*/
 .body-pd{
   padding: 2rem 0 0 16rem;
+}
+.body-pd-2{
+  padding: 2rem 0 0 16rem;
+
 }
 
 /*Active links menu*/
@@ -141,6 +176,7 @@ a{
   color: var(--white-color);
 }
 
+
 /*Show collapse*/
 .showCollapse{
   display: block;
@@ -149,4 +185,71 @@ a{
 /*Rotate icon*/
 .rotate{
   transform: rotate(180deg);
+}
+
+.blur {
+  filter: blur(2px);
+  transition: filter 0.3s ease;
+}
+
+/* Media queries for responsive design */
+
+@media (max-width: 768px) {
+  /* Styles for screens smaller than 768px */
+  :root {
+    --nav-width: 75px;  /* Adjust navigation bar width */
+    --body-font-size: 0.9rem;  /* Adjust font size for smaller screens */
+  }
+
+  .l-navbar {
+    padding: 1rem 1rem 1.5rem;  /* Adjust padding for smaller screens */
+  }
+  .nav__link {
+
+    padding: 0.5rem;  /* Adjust link padding for smaller screens */
+  }
+  .nav__icon {
+    font-size: 1.15rem;  /* Adjust icon size for smaller screens */
+  }
+  .nav__name {
+    /*display: none;  /* Hide link text on smaller screens */
+  }
+   .home-section {
+    margin-top: 4rem; /* Add margin to avoid overlap with top navbar */
+  }
+
+}
+
+@media (max-width: 576px) {
+  /* Styles for screens smaller than 576px */
+  :root {
+    --nav-width: 60px;  /* Adjust navigation bar width for very small screens */
+  }
+  body{
+    padding: 2rem;
+  }
+  .l-navbar {
+    padding: 0.75rem;
+    width: calc(var(--nav-width) + 9.25rem);
+     /* Add transition */
+    display: none/* Adjust padding for very small screens */
+
+  }
+  .top-navbar{
+    display: flex;
+  }
+
+  .nav__link {
+    /* grid-template-columns: 1fr;  /* Stack icons and text vertically
+    align-items: flex-start; /* Align text below icons */
+  }
+  .nav__icon {
+    margin-bottom: 0.25rem;  /* Add spacing between icon and text */
+  }
+  .l-navbar .nav__toggle {
+    display: none;  /* Add spacing between icon and text */
+  }
+   .home-section {
+    margin-top: 4rem; /* Add margin to avoid overlap with top navbar */
+  }
 }

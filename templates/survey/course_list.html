@@ -34,9 +34,9 @@
 
 </head>
 	<div class="title-div">
-        <h1 style="text-align: center;color:#4070f4;"> Liste des cours</h1>
+        <h1 style="text-align: center;color:#4070f4;"> Liste des Elements constitutifs</h1>
 			<div style="display: flex; justify-content: space-between">
-				<p style="color:#4c77ee;">Voicis la liste des cours  </p>
+				<p style="color:#4c77ee;">Voicis la liste des Elements constitutifs  </p>
 				<a href="{% url 'add_course' %}"><button class="btn1 btn-edit" >Ajouter</button></a>
 			</div>
 
@@ -47,7 +47,8 @@
 
 				<div class="cabecera" style="">
 					<a class="parte1" href="">
-					<div class="titulo">{{ course.name }}</div>
+					<div class="titulo">UE Name: {{ course.uenseignement }}</div>
+					<div class="titulo">EC Name: {{ course.name }}</div>
 					</a>
 					<div class="nombre">{{ course.teacher.username }} </div>
 				</div>

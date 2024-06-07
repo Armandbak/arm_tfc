@@ -12,6 +12,10 @@
         <title>{% block title %} Base Admin {% endblock%}</title>
     </head>
     <body id="body-pd">
+        <div class="top-navbar" id="top-navbar">
+            <ion-icon name="menu-sharp" onclick="toggleSidebar()" class="icon nav__toggle" id="nav-toggle_2"></ion-icon>
+
+        </div>
         <div class="l-navbar" id="navbar">
             <nav class="nav">
                 <div>
@@ -40,9 +44,13 @@
                             <span class="nav__name">Analytics</span>
                         </a>
                         -->
+                        <a href="{% url 'add_ue' %}" class="nav__link {% if active_link == 'cours' %}active{% endif %}">
+                            <ion-icon name="-sharp" class="nav__icon"></ion-icon>
+                            <span class="nav__name">UE</span>
+                        </a>
                         <a href="{% url 'course_list_teacher' %}" class="nav__link {% if active_link == 'course' %}active{% endif %}">
                             <ion-icon name="book-sharp" class="nav__icon"></ion-icon>
-                            <span class="nav__name">Courses</span>
+                            <span class="nav__name">EC</span>
                         </a>
 
                         <a href="{% url 'question_eee' %}" class="nav__link {% if active_link == 'question' %}active{% endif %}">

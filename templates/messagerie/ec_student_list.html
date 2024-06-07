@@ -1,0 +1,110 @@
+{% extends 'survey/student/studentbase.html' %}
+
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/chapter.css' %}">
+    <style>
+        .title-div{
+
+            height: 200px;
+            width: 600px;
+            background-color: #FDFEFE;
+            margin: 15px;
+            border-radius: 8px;
+            border-top: 8px solid #4070f4;
+            padding: 25px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+
+        }
+        .pie {
+            width: 300px;
+            height: 57px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        .pie .icon1 {
+            border-radius: 50%;
+            float: right;
+            width: 40px;
+            height: 40px;
+            margin-top: 1.09375rem;
+        }
+
+        .pie .icon2 {
+            border-radius: 50%;
+            float: right;
+            width: 40px;
+            height: 40px;
+            margin-top: 1.09375rem;
+        }
+        .btn1 {
+            padding: 10px 10px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            height: 36px;
+            width: 90px;
+            border-radius: 5px;
+            font-size: 14px;
+            letter-spacing: .5px;
+            font-weight: 540;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #d04d4d;
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: #4070f4;
+            color: white;
+        }
+
+        .button-container {
+
+            /*text-align: right;
+            margin-top: 10px;*/
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+        .arm{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+    <div class="container">
+        <h1>Liste des Elements Constitutifs</h1>
+
+            <div class="cards">
+                {% for course in courses %}
+                    <div class="card">
+                        <h2>EC {{course.id}}</h2>
+                        <p>{{course.name}}</p>
+                        <div class="button-container">
+                       <div class="pie">
+
+                            <a href="{% url 'student_teachers' course.id %}"><span class="icon1"><i class="fa fa-commenting-o" style="color: #4343a6"></i></span></a>
+
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+    <script src="{% static 'js/chapter.js' %}"></script>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock content %}

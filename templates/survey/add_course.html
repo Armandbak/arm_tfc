@@ -9,18 +9,22 @@
 
 </head>
 <div class="container">
-        <header>Ajouter un Cours</header>
+        <header>Ajouter un Element constitutif</header>
 
         <form method="POST" autocomplete="off" enctype="multipart/form-data">
           {% csrf_token %}
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Information du cours</span>
+                    <span class="title">Information du EC</span>
 
                     <div class="fields">
                         <div class="input-field">
-                            <label>Course Name</label>
+                            <label>EC Name</label>
                             {% render_field form.name %}
+                        </div>
+                        <div class="input-field">
+                            <label>UE Name</label>
+                            {% render_field form.uenseignement %}
                         </div>
 
                         <div class="input-field">

@@ -21,19 +21,25 @@ import json
 from django.contrib.auth.models import AbstractUser, Permission, Group, User
 
 
+
+class Uenseignement(models.Model):
+    name = models.CharField(max_length=255)
+    def __str__(self):
+        return self.name
 class Course(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     date_debut = models.DateField(blank= True, null= True)
     date_fin = models.DateField(blank= True, null= True)
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='courses')
+    uenseignement = models.ForeignKey(Uenseignement, on_delete=models.CASCADE, related_name='uenseignement')
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='teacher')
     total_marks = models.PositiveIntegerField()
 
     def __str__(self):
         return self.name
 
 class Question(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='questions')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course')
     text = models.CharField(max_length=255)
     options = models.TextField()
     marks = models.PositiveIntegerField()

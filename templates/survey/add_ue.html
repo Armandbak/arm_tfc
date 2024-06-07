@@ -1,41 +1,28 @@
-{% extends 'survey/teacher/teacherbase.html' %}
+{% extends 'survey/base.html' %}
 {% load widget_tweaks %}
 {%load static%}
 {% block content %}
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="{% static 'css/inscription.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ue.css' %}">
 
 </head>
 <div class="container">
-        <header>Modifier un Element constitutif</header>
+        <header>Ajouter une Unité d'enseignement</header>
 
         <form method="POST" autocomplete="off" enctype="multipart/form-data">
           {% csrf_token %}
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Information du EC</span>
+                    <span class="title">Information de l'unité d'enseignement</span>
 
                     <div class="fields">
                         <div class="input-field">
-                            <label>Course Name</label>
+                            <label>UE Name</label>
                             {% render_field form.name %}
                         </div>
 
-                        <div class="input-field">
-                            <label>description</label>
-                            {% render_field form.description %}
-                        </div>
-
-                        <div class="input-field">
-                            <label>Date du dedut</label>
-                            {% render_field form.date_debut %}
-                        </div>
-                        <div class="input-field">
-                            <label>Date de fin</label>
-                            {% render_field form.date_fin %}
-                        </div>
 
 
                     </div>
