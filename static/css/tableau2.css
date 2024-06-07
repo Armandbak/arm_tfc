@@ -31,7 +31,7 @@ Code written by:
 
 body {
     min-height: 100vh;
-    background: url(images/html_table.jpg) center / cover;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -262,7 +262,7 @@ thead th.active,tbody td.active {
     display: inline-block;
     width: 2rem;
     height: 2rem;
-    /*background: #fff6 url(images/export.png) center / 80% no-repeat;*/
+
     border-radius: 50%;
     transition: .2s ease-in-out;
 }
