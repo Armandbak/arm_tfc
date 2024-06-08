@@ -1,7 +1,6 @@
 import datetime
 from datetime import date, timedelta
 
-
 from django.db import models
 from django.utils import timezone
 
@@ -21,16 +20,18 @@ import json
 from django.contrib.auth.models import AbstractUser, Permission, Group, User
 
 
-
 class Uenseignement(models.Model):
     name = models.CharField(max_length=255)
+
     def __str__(self):
         return self.name
-class Course(models.Model):
+
+
+class Ec(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    date_debut = models.DateField(blank= True, null= True)
-    date_fin = models.DateField(blank= True, null= True)
+    date_debut = models.DateField(blank=True, null=True)
+    date_fin = models.DateField(blank=True, null=True)
     uenseignement = models.ForeignKey(Uenseignement, on_delete=models.CASCADE, related_name='uenseignement')
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='teacher')
     total_marks = models.PositiveIntegerField()
@@ -38,8 +39,9 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
+
 class Question(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course')
+    course = models.ForeignKey(Ec, on_delete=models.CASCADE, related_name='course')
     text = models.CharField(max_length=255)
     options = models.TextField()
     marks = models.PositiveIntegerField()
@@ -55,18 +57,18 @@ class Question(models.Model):
         self.options = json.dumps(options_list)
 
 
-
 class Inscription(models.Model):
-    cours = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='inscriptions')
+    cours = models.ForeignKey(Ec, on_delete=models.CASCADE, related_name='inscriptions')
     etudiant = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='inscriptions')
     date_inscription = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.etudiant.user.username} inscrit à {self.cours.name} le {self.date_inscription}'
 
+
 class Result(models.Model):
-    student = models.ForeignKey(Student,on_delete=models.CASCADE)
-    exam = models.ForeignKey(Course,on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    exam = models.ForeignKey(Ec, on_delete=models.CASCADE)
     marks = models.PositiveIntegerField()
     date = models.DateTimeField(auto_now=True)
     soumis = models.BooleanField(default=False)

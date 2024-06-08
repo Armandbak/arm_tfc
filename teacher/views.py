@@ -30,7 +30,7 @@ def teacher_signup_view(request):
 def teacher_dashboard_view(request):
     dict = {
 
-        'total_course': QMODEL.Course.objects.all().count(),
+        'total_course': QMODEL.Ec.objects.all().count(),
         'total_question': QMODEL.Question.objects.all().count(),
         'total_student': SMODEL.Student.objects.all().count(),
         'active_link': 'dashboard'
@@ -39,7 +39,7 @@ def teacher_dashboard_view(request):
 
 @login_required
 def check_marks(request, pk):
-    course = QMODEL.Course.objects.get(id=pk)
+    course = QMODEL.Ec.objects.get(id=pk)
     results = QMODEL.Result.objects.all().filter(exam=course).filter(soumis=True)
     return render(request, 'survey/teacher/mark.html', {'results': results})
 

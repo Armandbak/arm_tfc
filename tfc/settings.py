@@ -33,7 +33,7 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'static')
 SECRET_KEY = 'django-insecure-29jphe7fs!lg8ibtext)0&l-=!o8683%r0rxv^=_rx8-0)uct*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['https://tfcarmand-9035da520ab1.herokuapp.com/', '127.0.0.1']
 
@@ -94,8 +94,13 @@ WSGI_APPLICATION = 'tfc.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ArmandTfc',
+        'USER': 'postgres',
+        'PASSWORD': 'Armandbak',
+        'HOST': 'localhost',
+        'PORT': '5432',
+
     }
 }
 

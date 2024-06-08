@@ -14,7 +14,7 @@ from teacher import forms as TFORM
 from student import forms as SFORM
 from . import forms,models
 from survey import forms as QFORM
-from .models import Question, Course, Inscription, Result, Uenseignement
+from .models import Question, Ec, Inscription, Result, Uenseignement
 from django.shortcuts import render, redirect
 from .forms import QuestionForm
 from .models import Question
@@ -53,7 +53,7 @@ def admin_dashboard_view(request):
     dict={
     'total_student':SMODEL.Student.objects.all().count(),
     'total_teacher':TMODEL.Teacher.objects.all().filter(status=True).count(),
-    'total_course':models.Course.objects.all().count(),
+    'total_course':models.Ec.objects.all().count(),
     'total_question':models.Question.objects.all().count(),
     'pending_teacher': TMODEL.Teacher.objects.all().filter(status=False).count(),
     'active_link': 'dashboard',
@@ -148,7 +148,7 @@ def question_success_view(request):
 
 @login_required
 def course_list(request):
-    courses = Course.objects.all()
+    courses = Ec.objects.all()
     active_link = 'course'
     return render(request, 'survey/course_list.html', {'courses': courses, 'active_link': active_link})
 
@@ -161,29 +161,29 @@ def ue_list(request):
 
 
 def ec_list(request):
-    courses = Course.objects.all()
+    courses = Ec.objects.all()
     active_link = 'course'
     return render(request, 'messagerie/ec_list.html', {'courses': courses, 'active_link': active_link})
 def ec_student_list(request):
-    courses = Course.objects.all()
+    courses = Ec.objects.all()
     active_link = 'course'
     return render(request, 'messagerie/ec_student_list.html', {'courses': courses, 'active_link': active_link})
 
 @login_required
 def course_list_adm(request):
-    ue = Course.objects.all()
+    ue = Ec.objects.all()
     active_link = 'course'
     return render(request, 'survey/course_list_adm.html', {'ue': ue, 'active_link': active_link})
 
 @login_required
 def course_list_total(request):
-    courses = Course.objects.all()
+    courses = Ec.objects.all()
     active_link = 'course'
     return render(request, 'survey/course_list_total.html', {'courses': courses, 'active_link': active_link})
 
 @login_required
 def course_detail(request, course_id):
-    course = get_object_or_404(Course, pk=course_id)
+    course = get_object_or_404(Ec, pk=course_id)
     questions = Question.objects.filter(course=course)
     active_link = 'course'
 
@@ -193,7 +193,7 @@ def course_detail(request, course_id):
 
 @login_required
 def course_detail_student(request, course_id):
-    course = get_object_or_404(Course, pk=course_id)
+    course = get_object_or_404(Ec, pk=course_id)
     questions = Question.objects.filter(course=course)
     active_link = 'course'
 
@@ -203,7 +203,7 @@ def course_detail_student(request, course_id):
 
 @login_required
 def course_Eval(request, course_id):
-    course = get_object_or_404(Course, pk=course_id)
+    course = get_object_or_404(Ec, pk=course_id)
     questions = Question.objects.filter(course=course)
     active_link = 'evaluation'
 
@@ -225,7 +225,7 @@ def course_Eval(request, course_id):
 @login_required
 @user_passes_test(is_student)
 def inscrire(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
+    course = get_object_or_404(Ec, id=course_id)
     try:
         student_profile = Student.objects.get(user=request.user)
     except Student.DoesNotExist:
@@ -239,7 +239,7 @@ def inscrire(request, course_id):
 
 @login_required
 def edit_course(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
+    course = get_object_or_404(Ec, id=course_id)
     if request.method == 'POST':
         form = CourseForm(request.POST, instance=course)
         if form.is_valid():
@@ -264,7 +264,7 @@ def edit_ue(request, ue_id):
 
 @login_required
 def delete_course(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
+    course = get_object_or_404(Ec, id=course_id)
     course.delete()
     return redirect('course_list')
 

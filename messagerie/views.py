@@ -4,14 +4,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from student.models import Student
-from survey.models import Course, Inscription
+from survey.models import Ec, Inscription
 from teacher.models import Teacher
 from .models import Conversation, ConversationUser, Message
 
 @login_required
 def teacher_conversations(request, student_id):
     teacher = Teacher.objects.get(user=request.user)
-    courses = Course.objects.filter(teacher=teacher)
+    courses = Ec.objects.filter(teacher=teacher)
    # students_ifd = Student.objects.all()
     inscriptions = Inscription.objects.filter(cours__in=courses)
     students_ifd = Student.objects.filter(inscriptions__in=inscriptions).distinct()
@@ -42,7 +42,7 @@ def student_conversations(request, teacher_id):
 
     # Obtenir les enseignants de ces cours
     teachers_ifn = Teacher.objects.filter(
-        id__in=Course.objects.filter(id__in=courses).values_list('teacher_id', flat=True)).distinct()
+        id__in=Ec.objects.filter(id__in=courses).values_list('teacher_id', flat=True)).distinct()
 
     student_conn = request.user
     teacher = Teacher.objects.get(user_id=teacher_id)
@@ -70,12 +70,12 @@ def teacher_students(request, course_id=None):
 
     if course_id:
         # Si un ID de cours est fourni, filtrer les étudiants pour ce cours spécifique
-        course = get_object_or_404(Course, pk=course_id)
+        course = get_object_or_404(Ec, pk=course_id)
         students = course.inscriptions.all().values_list('etudiant', flat=True)
         students = Student.objects.filter(id__in=students).distinct()
     else:
         # Sinon, obtenir tous les étudiants des cours enseignés par l'enseignant connecté
-        courses = Course.objects.filter(teacher=teacher)
+        courses = Ec.objects.filter(teacher=teacher)
         inscriptions = Inscription.objects.filter(cours__in=courses)
         students = Student.objects.filter(inscriptions__in=inscriptions).distinct()
 
@@ -91,12 +91,12 @@ def student_teachers(request, course_id=None):
 
     if course_id:
         # Si un ID de cours est fourni, filtrer les enseignants pour ce cours spécifique
-        course = get_object_or_404(Course, pk=course_id)
+        course = get_object_or_404(Ec, pk=course_id)
         teachers = course.teacher
     else:
         # Sinon, obtenir tous les enseignants des cours auxquels l'étudiant est inscrit
         courses = inscriptions.values_list('cours', flat=True)
-        teachers = Teacher.objects.filter(id__in=Course.objects.filter(id__in=courses).values_list('teacher_id', flat=True)).distinct()
+        teachers = Teacher.objects.filter(id__in=Ec.objects.filter(id__in=courses).values_list('teacher_id', flat=True)).distinct()
 
     return render(request, 'messagerie/student_teachers.html', {'teachers': teachers, 'active_link': 'message'})
 

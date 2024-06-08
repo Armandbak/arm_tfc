@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db import IntegrityError
-from survey.models import Course, Inscription
+from survey.models import Ec, Inscription
 from . import forms, models
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect, JsonResponse
@@ -38,7 +38,7 @@ def is_student(user):
 @user_passes_test(is_student)
 def student_dashboard_view(request):
     dict = {
-        'total_course': SMODEL.Course.objects.all().count(),
+        'total_course': SMODEL.Ec.objects.all().count(),
         'total_question': SMODEL.Question.objects.all().count(),
         #'tota_question_inscrit':Inscription.objects.filter(etudiant=request.user).count(),
         'active_link': 'dashboard',
@@ -52,7 +52,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def inscrire(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
+    course = get_object_or_404(Ec, id=course_id)
     try:
         student_profile = Student.objects.get(user=request.user)
     except Student.DoesNotExist:
@@ -83,7 +83,7 @@ def calculate_marks(request):
         course_id = request.POST.get('course_id')
         if course_id:
             try:
-                course = SMODEL.Course.objects.get(id=course_id)
+                course = SMODEL.Ec.objects.get(id=course_id)
                 total_marks = 0
                 questions = SMODEL.Question.objects.filter(course=course)
 
@@ -105,7 +105,7 @@ def calculate_marks(request):
 
                 return redirect('course_list_total')
 
-            except SMODEL.Course.DoesNotExist:
+            except SMODEL.Ec.DoesNotExist:
                 # Handle the case where the course does not exist
                 pass
 
@@ -117,7 +117,7 @@ def calculate_marks(request):
 
 @login_required
 def check_marks_view(request,pk):
-    course = SMODEL.Course.objects.get(id=pk)
+    course = SMODEL.Ec.objects.get(id=pk)
     student = models.Student.objects.get(user_id=request.user.id)
     results = SMODEL.Result.objects.all().filter(exam=course).filter(student=student)
     return render(request, 'survey/student/mark.html', {'results':results})
