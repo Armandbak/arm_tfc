@@ -1,89 +1,161 @@
-body{
-	background-color: #f9fafe;
-	font-family: Roboto,Sans-serif;
+body {
+    background-color: #f9fafe;
+    font-family: Roboto, Sans-serif;
 }
-.form{
-	width: 600px;
-	margin: auto;
 
+.form {
+    width: 600px;
+    margin: auto;
 }
-.required{
-font-size: 13px;
-color: red;
+
+.required {
+    font-size: 13px;
+    color: red;
 }
-.title-div{
-	height: 150px;
-	width: 600px;
-	background-color: #FDFEFE;
-	margin: 15px;
-	border-radius: 8px;
-	border-top: 8px solid #4070f4;
-	padding: 25px;
-	box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+
+.title-div {
+    height: 150px;
+    width: 600px;
+    background-color: #FDFEFE;
+    margin: 15px;
+    border-radius: 8px;
+    border-top: 8px solid #4070f4;
+    padding: 25px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-.name-div, .college-div, .gmail-div, .mobile-div{
-	height: 150px;
-	width: 650px;
-	background-color: #FDFEFE;
-	margin: 15px;
-	border-radius: 8px;
-	box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+
+.name-div,
+.college-div,
+.gmail-div,
+.mobile-div {
+    height: 150px;
+    width: 650px;
+    background-color: #FDFEFE;
+    margin: 15px;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-.quest{
+
+.quest {
     height: 160px;
-	width: 650px;
-	background-color: #FDFEFE;
-	margin: 15px;
-	border-radius: 8px;
-	box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    width: 650px;
+    background-color: #FDFEFE;
+    margin: 15px;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-.name{
-	padding-top: 20px;
-	padding-left: 25px;
-	padding-bottom: 25px;
-	font-size: 15px;
-}
-.input-div{
-	padding-top: 25px;
-	padding-left: 25px;
-}
-.input-div .input{
-	width: 300px;
-	border: 0;
-	outline: 0;
-	border-bottom: 1.5px solid #DCD7D7;
-	font-size: 15px;
-}
-.btn{
-	height: 36px;
-	width: 100px;
-	background-color: #4070f4;
-	border-radius: 5px;
-	font-size: 14px;
-	letter-spacing: .5px;
-	font-weight: 540;
-	border: none;
-	padding: 10px;
-	position: absolute;
-	margin: 15px;
-	color: white;
-}
-.last-div h2{
-	text-align: center;
-	padding-top: 50px;
-	color: #a2a4a6;
-	font-weight: 200;
-}
-.term{
-	font-size: 12px;
-	padding-left: 65px;
-	padding-top: 5px;
-	position: absolute;
-}
-.never{
-	padding-left: 15px;
-	font-size: 12px;
-	padding-top: 70px;
-	font-weight: 400;
 
+.name {
+    padding-top: 20px;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    font-size: 15px;
+}
+
+.input-div {
+    padding-top: 25px;
+    padding-left: 25px;
+}
+
+.input-div .input {
+    width: 300px;
+    border: 0;
+    outline: 0;
+    border-bottom: 1.5px solid #DCD7D7;
+    font-size: 15px;
+}
+
+.btn {
+    height: 36px;
+    width: 100px;
+    background-color: #4070f4;
+    border-radius: 5px;
+    font-size: 14px;
+    letter-spacing: .5px;
+    font-weight: 540;
+    border: none;
+    padding: 10px;
+    position: absolute;
+    margin: 15px;
+    color: white;
+}
+
+.last-div h2 {
+    text-align: center;
+    padding-top: 50px;
+    color: #a2a4a6;
+    font-weight: 200;
+}
+
+.term {
+    font-size: 12px;
+    padding-left: 65px;
+    padding-top: 5px;
+    position: absolute;
+}
+
+.never {
+    padding-left: 15px;
+    font-size: 12px;
+    padding-top: 70px;
+    font-weight: 400;
+}
+
+/* Media Queries */
+@media (max-width: 900px) {
+    .form {
+        width: 80%;
+    }
+    .title-div,
+    .name-div,
+    .college-div,
+    .gmail-div,
+    .mobile-div,
+    .quest {
+        width: 100%;
+    }
+    .input-div .input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .title-div,
+    .name-div,
+    .college-div,
+    .gmail-div,
+    .mobile-div,
+    .quest {
+        height: auto;
+        margin: 10px;
+        padding: 20px;
+    }
+    .name {
+        font-size: 14px;
+        padding: 15px;
+    }
+    .input-div {
+        padding-top: 15px;
+        padding-left: 15px;
+    }
+    .input-div .input {
+        width: 100%;
+    }
+    .btn {
+        width: 30%;
+        margin: 10px;
+        padding: 10px;
+        position: static;
+    }
+    .term,
+    .never {
+        position: static;
+        padding-left: 15px;
+    }
+    .term {
+        padding-top: 15px;
+    }
+    .never {
+        padding-top: 20px;
+    }
 }

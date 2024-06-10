@@ -4,7 +4,7 @@ Responsive HTML Table With Pure CSS - Web Design/UI Design
 Code written by:
 👨🏻‍⚕️ Coding Design (Jeet Saru)
 
-> You can do whatever you want with the code. However if you love my content, you can **SUBSCRIBED** my YouTube Channel.
+> You can do whatever you want with the code. However if you love my content, you can **SUBSCRIBE** to my YouTube Channel.
 
 🌎link: www.youtube.com/codingdesign
 */
@@ -12,22 +12,17 @@ Code written by:
 * {
     margin: 0;
     padding: 0;
-
     box-sizing: border-box;
     font-family: sans-serif;
 }
-@media print {
- .table, .table__body {
-  overflow: visible;
-  height: auto !important;
-  width: auto !important;
- }
-}
 
-/*@page {
-    size: landscape;
-    margin: 0;
-}*/
+@media print {
+    .table, .table__body {
+        overflow: visible;
+        height: auto !important;
+        width: auto !important;
+    }
+}
 
 body {
     min-height: 100vh;
@@ -41,11 +36,9 @@ main.table {
     width: 82vw;
     height: 90vh;
     background-color: rgba(255, 255, 255, 0.863);
-
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
-
     overflow: hidden;
 }
 
@@ -54,7 +47,6 @@ main.table {
     height: 10%;
     background-color: #fff4;
     padding: .8rem 1rem;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -66,11 +58,9 @@ main.table {
     background-color: #fff5;
     padding: 0 .8rem;
     border-radius: 2rem;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     transition: .2s;
 }
 
@@ -97,30 +87,26 @@ main.table {
     width: 95%;
     max-height: calc(89% - 1.6rem);
     background-color: #fffb;
-
     margin: .8rem auto;
     border-radius: .6rem;
-
     overflow: auto;
     overflow: overlay;
 }
 
-
-.table__body::-webkit-scrollbar{
+.table__body::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.5rem;
 }
 
-.table__body::-webkit-scrollbar-thumb{
+.table__body::-webkit-scrollbar-thumb {
     border-radius: .5rem;
     background-color: #0004;
     visibility: hidden;
 }
 
-.table__body:hover::-webkit-scrollbar-thumb{
+.table__body:hover::-webkit-scrollbar-thumb {
     visibility: visible;
 }
-
 
 table {
     width: 100%;
@@ -131,7 +117,6 @@ td img {
     height: 36px;
     margin-right: .5rem;
     border-radius: 50%;
-
     vertical-align: middle;
 }
 
@@ -212,7 +197,6 @@ tbody tr.hide td img {
     background-color: #6fcaea;
 }
 
-
 @media (max-width: 1000px) {
     td:not(:first-of-type) {
         min-width: 12.1rem;
@@ -225,15 +209,13 @@ thead th span.icon-arrow {
     height: 1.3rem;
     border-radius: 50%;
     border: 1.4px solid transparent;
-
     text-align: center;
     font-size: 1rem;
-
     margin-left: .5rem;
     transition: .2s ease-in-out;
 }
 
-thead th:hover span.icon-arrow{
+thead th:hover span.icon-arrow {
     border: 1.4px solid #6c00bd;
 }
 
@@ -241,16 +223,17 @@ thead th:hover {
     color: #6c00bd;
 }
 
-thead th.active span.icon-arrow{
+thead th.active span.icon-arrow {
     background-color: #6c00bd;
     color: #fff;
 }
 
-thead th.asc span.icon-arrow{
+thead th.asc span.icon-arrow {
     transform: rotate(180deg);
 }
 
-thead th.active,tbody td.active {
+thead th.active,
+tbody td.active {
     color: #6c00bd;
 }
 
@@ -280,18 +263,14 @@ thead th.active,tbody td.active {
 .export__file .export__file-options {
     position: absolute;
     right: 0;
-
     width: 12rem;
     border-radius: .5rem;
     overflow: hidden;
     text-align: center;
-
     opacity: 0;
     transform: scale(.8);
     transform-origin: top right;
-
     box-shadow: 0 .2rem .5rem #0004;
-
     transition: .2s;
 }
 
@@ -301,31 +280,80 @@ thead th.active,tbody td.active {
     z-index: 100;
 }
 
-.export__file .export__file-options label{
+.export__file .export__file-options label {
     display: block;
     width: 100%;
     padding: .6rem 0;
     background-color: #f2f2f2;
-
     display: flex;
     justify-content: space-around;
     align-items: center;
-
     transition: .2s ease-in-out;
 }
 
-.export__file .export__file-options label:first-of-type{
+.export__file .export__file-options label:first-of-type {
     padding: 1rem 0;
     background-color: #86e49d !important;
 }
 
-.export__file .export__file-options label:hover{
+.export__file .export__file-options label:hover {
     transform: scale(1.05);
     background-color: #fff;
     cursor: pointer;
 }
 
-.export__file .export__file-options img{
+.export__file .export__file-options img {
     width: 2rem;
     height: auto;
+}
+
+/* Media Queries for responsive design */
+@media (max-width: 768px) {
+    main.table {
+        width: 95vw;
+        height: 85vh;
+    }
+    .table__header .input-group {
+        width: 60%;
+    }
+    .table__header .input-group:hover {
+        width: 70%;
+    }
+    table, th, td {
+        padding: 0.5rem;
+    }
+    .status {
+        padding: 0.2rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .table__header {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+    }
+    .table__header .input-group {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+    .table__header .input-group:hover {
+        width: 100%;
+    }
+    .table__body {
+        width: 100%;
+    }
+    table, th, td {
+        padding: 0.3rem;
+    }
+    thead th {
+        font-size: 0.9rem;
+    }
+    tbody tr td {
+        font-size: 0.8rem;
+    }
+    .status {
+        padding: 0.2rem 0;
+        font-size: 0.7rem;
+    }
 }

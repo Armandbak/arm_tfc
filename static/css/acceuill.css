@@ -45,6 +45,8 @@ nav {
   gap: 1rem;
 }
 
+
+
 .link a {
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -201,7 +203,7 @@ ul{
 }
 .collapse__menu{
   display: none;
-  padding: .75rem 2.25rem;
+  padding: .75rem 0rem;
 
 }
 .collapse__sublink{
@@ -226,7 +228,7 @@ ul{
 
 @media (width < 900px) {
   .link a:not(.nav__btn) {
-    display: none;
+
   }
 
   .container {
@@ -249,4 +251,7 @@ ul{
   .image__container img {
     transform: translateY(0) !important;
   }
+
+
+
 }
