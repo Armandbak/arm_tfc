@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-29jphe7fs!lg8ibtext)0&l-=!o8683%r0rxv^=_rx8-0)uct*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://tfcarmand-9035da520ab1.herokuapp.com/']
+ALLOWED_HOSTS = ['https://tfcarmand-9035da520ab1.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
@@ -99,8 +99,7 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+
 
 
 # Password validation
